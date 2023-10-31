@@ -48,3 +48,9 @@ ORDER BY s.customer_id ASC;
 ```
 
 ##### Result
+
+![question 1](https://github.com/CodeofRahul/Danny-s-Diner/assets/143285125/148ea2b4-5e50-4f7d-9898-524104577b16)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### 2.	How many days has each customer visited the restaurant?
