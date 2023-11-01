@@ -1,4 +1,4 @@
-# Danny's Diner
+# Case Study #1: Danny's Diner
 
 ![Danny's Diner](https://github.com/CodeofRahul/Danny-s-Diner/assets/143285125/4cfa9c25-d267-4794-b8d9-71b14adc6eba)
 
