@@ -278,7 +278,7 @@ ORDER BY ld.customer_id;
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### Bonus Questions
+#### Bonus Question 1
 
 ##### Join All The Things
 
@@ -303,3 +303,43 @@ ORDER BY s.customer_id, s.order_date;
 
 ##### Result
 
+![Bonus 1](https://github.com/CodeofRahul/Danny-s-Diner/assets/143285125/5489cc47-702e-4071-bed7-7a44d9329ab8)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Bonus Question 2
+
+##### Rank all the things
+
+Danny also requires further information about the ` ranking ` of customer products, but he purposely does not need the ranking for non-member purchases so he expects ` null ranking ` values for the records when customers are not yet part of the loyalty program.
+
+```sql
+
+With customers_data as(
+SELECT s.customer_id, s.order_date, m.product_name, m.price,
+	case
+		when mem.join_date > s.order_date then 'N'
+		when mem.join_date <= s.order_date then 'Y'
+		 else 'N'
+		 end as member
+FROM sales as s
+LEFT JOIN menu as m
+ON s.product_id = m.product_id
+LEFT JOIN members as mem
+ON s.customer_id = mem.customer_id
+ORDER BY s.customer_id, s.order_date)
+
+SELECT *, 
+	case
+	when member = 'N' then NULL
+	else rank() over(partition by customer_id, member order by order_date)
+	end as ranking
+FROM customers_data;
+
+```
+
+##### Result
+
+![Bonus 2](https://github.com/CodeofRahul/Danny-s-Diner/assets/143285125/6f54b604-8d1f-453b-99d3-30e810fb13e8)
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
