@@ -277,3 +277,29 @@ ORDER BY ld.customer_id;
 ![question 10](https://github.com/CodeofRahul/Danny-s-Diner/assets/143285125/42c83342-5a44-4273-affe-99309ea56a12)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### Bonus Questions
+
+##### Join All The Things
+
+Create basic data tables that Danny and his team can use to quickly derive insights without needing to join the base tables using sql. Fill Member column as 'N' if the purchase was made before becoming a member and 'Y' if the purchase was made after joining membership.
+
+```sql
+
+SELECT s.customer_id, s.order_date, m.product_name, m.price,
+	case
+		when mem.join_date > s.order_date then 'N'
+		when mem.join_date < s.order_date then 'Y'
+		 else 'N'
+		 end as member
+FROM sales as s
+LEFT JOIN menu as m
+ON s.product_id = m.product_id
+LEFT JOIN members as mem
+ON s.customer_id = mem.customer_id
+ORDER BY s.customer_id, s.order_date;
+
+```
+
+##### Result
+
